@@ -26,13 +26,13 @@ To run this program, you will need:
    
    ```
 ## System Credentials
-The system includes pre-configured mock credentials for demonstration purposes. You must use these to log into the respective menus:
-**Administrator Login**
- * **Username:** admin
- * **Password:** admin
-**Cashier Login**
- * **Username:** user
- * **Password:** user
+The system includes pre-configured mock credentials for demonstration purposes. You must use these to log into the respective menus:<br>
+##### **Administrator Login**
+ > **Username:** admin<br>
+ > **Password:** admin
+##### **Cashier Login**
+ > **Username:** user<br>
+ > **Password:** user
 ## Code Structure Overview
  * **BaseStore & StoreData**: Handles the initial configuration and the pre-populated list of items (dictionaries containing name, price, and qty).
  * **User**: Contains the core logic and loops for both the admin() and cashier() interfaces.
