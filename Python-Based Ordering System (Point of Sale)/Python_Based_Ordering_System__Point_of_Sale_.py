@@ -76,10 +76,11 @@ def auth(auth_user, valid_username, valid_password):
 
 # Inventory Display
 def show_inventory(items):
-    print(f"\n--- {StoreData.store_name} Inventory ---")
+    print(f"\n{'-'*8} {StoreData.store_name} Inventory {'-'*8}")
+    print(f"{'Item':^25} {'Price':<11} {'Stock'}")
     for i in range(len(items)):
         it = items[i]
-        print(f"{i+1}{'.':<2} {it['name']:<25} P{it['price']:<10} {it['qty']:<5} pcs")
+        print(f"{i+1}. {it['name']:<{25 - len(str(i+1)) - 2}} P{it['price']:<10} {it['qty']}")
 
 # Receipt
 def process_receipt(cart):
