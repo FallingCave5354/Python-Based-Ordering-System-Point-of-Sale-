@@ -4,7 +4,7 @@
 
 # Inventory
 class BaseStore:
-    store_name = "iMark Bookstore"
+    store_name = 'iMark Bookstore'
 
 class StoreData(BaseStore):
     inventory = [
@@ -24,35 +24,35 @@ class User:
     def admin(self):
         while True:
             show_inventory(store.inventory)
-            print("\n[A] Add New | [E] Edit | [D] Delete | [Q] Logout")
+            print('\n[A] Add New | [E] Edit | [D] Delete | [Q] Logout')
             action = input("Select: ").lower()
 
             if action == 'q': break
             elif action == 'a': # New Item
-                name = input("New name: ")
-                price = float(input("Price: "))
-                qty = int(input("Qty: "))
+                name = input('New name: ')
+                price = float(input('Price: '))
+                qty = int(input('Qty: '))
                 store.inventory.append({"name": name, "price": price, "qty": qty})
             
             elif action in ['e', 'd']:
-                idx = int(input("Enter item # to modify: ")) - 1
+                idx = int(input('Enter item # to modify: ')) - 1
                 if 0 <= idx < len(store.inventory):
                     if action == 'd': # Delete Item
                         deleted_item = store.inventory.pop(idx)
                         print(f"Removed {deleted_item['name']}.")
                     else: # Edit Item
-                        store.inventory[idx]['name'] = input("New name: ")
-                        store.inventory[idx]['price'] = float(input("New price: "))
-                        store.inventory[idx]['qty'] = int(input("New qty: "))
-                        print("Update successful!")
-                else: print("Invalid number.")
+                        store.inventory[idx]['name'] = input('New name: ')
+                        store.inventory[idx]['price'] = float(input('New price: '))
+                        store.inventory[idx]['qty'] = int(input('New qty: '))
+                        print('Update successful!')
+                else: print('Invalid number.')
 
     
     def cashier(self):
         cart = []
         while True:
             show_inventory(store.inventory)
-            action = input("\nEnter item # to buy | [C] Checkout | [Q] Logout \n> ").lower()
+            action = input('\nEnter item # to buy | [C] Checkout | [Q] Logout \n> ').lower()
             if action == 'q': break
             elif action == 'c':
                 process_receipt(cart)
@@ -65,7 +65,7 @@ class User:
                     if it['qty'] >= buy_qty:
                         it['qty'] -= buy_qty
                         cart.append({"name": it['name'], "price": it['price'], "qty": buy_qty})
-                    else: print("Low stock!")
+                    else: print('Low stock!')
 
 # Login
 def auth(auth_user, valid_username, valid_password):
@@ -76,22 +76,29 @@ def auth(auth_user, valid_username, valid_password):
 
 # Inventory Display
 def show_inventory(items):
-    print(f"\n{'-'*8} {StoreData.store_name} Inventory {'-'*8}")
+    print(f"\n{'-'*8} {store.store_name} Inventory {'-'*8}")
     print(f"{'Item':^25} {'Price':<11} {'Stock'}")
     for i in range(len(items)):
         it = items[i]
-        print(f"{i+1}. {it['name']:<{25 - len(str(i+1)) - 2}} P{it['price']:<10} {it['qty']}")
+        print(f"{i+1}. {it['name']:<{25 - len(str(i+1)) - 2}} P{it['price']:<10} x{it['qty']}")
 
 # Receipt
 def process_receipt(cart):
-    if not cart: return print("Cart is empty.")
-    print("\n----- OFFICIAL RECEIPT -----\n")
+    if not cart: return print('Cart is empty.')
+    line = f"\n\n{':'*45}\n\n"
+    print(f"\n\n{store.store_name:^{len(line)}}\n")
+    print(f"{'Pascam 1, Gen. Trias Cavite':^{len(line)}}")
+    print(f"{'Tel. No. 123-456-7890':^{len(line)}}")
+    print(line)
     total = 0
+    print(f"{'OFFICIAL RECEIPT':^{len(line)}}\n")
+    print(f"{'Item':<25} {'Amount':<11} {'Price'}")
     for i in range(len(cart)):
         item = cart[i]
         sub = item['price'] * item['qty']
         total += sub
-        print(f"{item['name']} x{item['qty']} = P{sub}")
+        print(f"{item['name']:<25} x{item['qty']:<10} P{sub}")
+    print(line)
     print(f"TOTAL BILL: P{total}\n")
 
 # Main System
@@ -100,7 +107,7 @@ menu = User()
 
 while True:
     print(f"\n===== {store.store_name} =====")
-    user = input("[1] Admin  \n[2] Cashier  \n[3] Exit \n> ")
+    user = input('[1] Admin  \n[2] Cashier  \n[3] Exit \n> ')
 
     if user == '1': # Admin Menu
         if auth('Admin', 'admin', 'admin'):
@@ -113,5 +120,5 @@ while True:
         else: print('\nLogin Failed!')
 
     elif user == '3': # Back to Main Menu
-        print("Shutting down...")
+        print('Shutting down...')
         break
