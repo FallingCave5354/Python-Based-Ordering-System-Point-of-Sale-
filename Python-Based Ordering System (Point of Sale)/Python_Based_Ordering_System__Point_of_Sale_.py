@@ -20,7 +20,9 @@ class StoreData(BaseStore):
         {"name": "Backpack", "price": 550.0, "qty": 3},
     ]
 
+# Users
 class User:
+    # Administrator Menu
     def admin(self):
         while True:
             show_inventory(store.inventory)
@@ -47,7 +49,7 @@ class User:
                         print('Update successful!')
                 else: print('Invalid number.')
 
-    
+    # Cashier Menu
     def cashier(self):
         cart = []
         while True:
@@ -85,7 +87,7 @@ def show_inventory(items):
 # Receipt
 def process_receipt(cart):
     if not cart: return print('Cart is empty.')
-    line = f"\n\n{':'*45}\n\n"
+    line = f"\n\n{':'*46}\n\n"
     print(f"\n\n{store.store_name:^{len(line)}}\n")
     print(f"{'Pascam 1, Gen. Trias Cavite':^{len(line)}}")
     print(f"{'Tel. No. 123-456-7890':^{len(line)}}")
