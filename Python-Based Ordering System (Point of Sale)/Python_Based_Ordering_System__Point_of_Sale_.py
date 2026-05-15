@@ -2,7 +2,7 @@
 #   Python Based Ordering System (Point of Sale)   #
 ####################################################
 
-# Inventory
+# Inventory (Zymonn)
 class BaseStore:
     store_name = 'iMark Bookstore'
 
@@ -20,7 +20,7 @@ class StoreData(BaseStore):
         {"name": "Backpack", "price": 550.0, "qty": 3},
     ]
 
-# Users
+# Users (Renz & Mark)
 class User:
     # Administrator Menu
     def admin(self):
@@ -69,14 +69,14 @@ class User:
                         cart.append({"name": it['name'], "price": it['price'], "qty": buy_qty})
                     else: print('Low stock!')
 
-# Login
+# Login (Renz)
 def auth(auth_user, valid_username, valid_password):
     print(f'\n===== Login as {auth_user} =====\n')
     username = input(f'{"Username: ":>15}')
     password = input(f'{"Password: ":>15}')
     return username == valid_username and password == valid_password
 
-# Inventory Display
+# Inventory Display (Josh)
 def show_inventory(items):
     print(f"\n{'-'*8} {store.store_name} Inventory {'-'*8}")
     print(f"{'Item':^25} {'Price':<11} {'Stock'}")
@@ -84,7 +84,7 @@ def show_inventory(items):
         it = items[i]
         print(f"{i+1}. {it['name']:<{25 - len(str(i+1)) - 2}} P{it['price']:<10} x{it['qty']}")
 
-# Receipt
+# Receipt (Renz)
 def process_receipt(cart):
     if not cart: return print('Cart is empty.')
     line = f"\n\n{':'*46}\n\n"
@@ -103,7 +103,7 @@ def process_receipt(cart):
     print(line)
     print(f"TOTAL BILL: P{total}\n")
 
-# Main System
+# Main System (Kevin)
 store = StoreData()
 menu = User()
 
